@@ -24,7 +24,7 @@ public class RestClient {
 		 * for request
 		 */
 		ClientResponse response = null;
-		response = webResource.queryParam("param", "hi").header("Content-Type", "english").get(ClientResponse.class);
+		response = webResource.queryParam("param", "hi").header("Content-Type", "text").get(ClientResponse.class);
 
 		System.out.println(response.getEntity(String.class));
 

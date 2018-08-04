@@ -3,6 +3,7 @@ package com.sreenu.core;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -33,5 +34,18 @@ public class RestResource {
 		return Response.status(200).entity(output).build();
 
 	}
+	@Path("/send")
+	@POST
+	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	
+	public Response sendMsg(Message msg, @HeaderParam("Content") String content) {
+
+		String output = "Jersey say : " + msg + "header" + content;
+
+		return Response.status(200).entity(msg).build();
+
+	}
+
 
 }
