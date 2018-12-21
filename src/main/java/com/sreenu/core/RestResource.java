@@ -10,13 +10,20 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sreenu.service.DemoService;
+
 /**
  * @author Anil Aleti
  *
  */
+@SuppressWarnings("unused")
 @Path("/hello")
 
 public class RestResource {
+	@Autowired
+	private DemoService demoService;
 
 	/**
 	 * 
@@ -30,22 +37,11 @@ public class RestResource {
 	public Response getMsg(@QueryParam("param") String msg, @HeaderParam("Content-Type") String content) {
 
 		String output = "Jersey say : " + msg + "header" + content;
-
+		System.out.println(demoService.getMessage());
 		return Response.status(200).entity(output).build();
 
 	}
-	@Path("/send")
-	@POST
-	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	
-	public Response sendMsg(Message msg, @HeaderParam("Content") String content) {
-
-		String output = "Jersey say : " + msg + "header" + content;
-
-		return Response.status(200).entity(msg).build();
-
-	}
 
 
 }
